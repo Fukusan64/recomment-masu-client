@@ -1,4 +1,4 @@
-# recomment-masu-client
+# atcoder-ploblem-recommender-client
 
 ## Project setup
 ```
