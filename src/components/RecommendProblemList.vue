@@ -18,7 +18,7 @@
           {{ props.row.evaluationValue }}
         </b-table-column>
         <b-table-column field="link" label="Link" centered>
-           <b-tooltip :label="props.row.link" position="is-bottom">
+           <b-tooltip :label="props.row.link" position="is-left">
             <a class="button is-link is-outlined is-small" :href="props.row.link">Link</a>
           </b-tooltip>
         </b-table-column>
