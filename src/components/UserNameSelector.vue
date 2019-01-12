@@ -5,11 +5,13 @@
     >
       <b-autocomplete
         v-model="inputValue"
+        :keep-first="true"
         :data="userNamesArray"
         placeholder="select atCoder user name"
         icon="magnify"
         :loading="isLoading"
-        @select="setUserName">
+        @select="setUserName"
+      >
         <template slot="empty">表示可能なユーザーではありません</template>
       </b-autocomplete>
     </b-field>
