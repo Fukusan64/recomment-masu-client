@@ -6,7 +6,7 @@
       <b-autocomplete
         :open-on-focus="true"
         v-model="inputValue"
-        :data="userNamesArray | userNamesArrayFilter(inputValue)"
+        :data="userNamesArray"
         placeholder="select atCoder user name"
         icon="magnify"
         @select="setUserName">
@@ -24,14 +24,20 @@
 
 
 <script>
+
 export default {
+  mounted() {
+    this.$store.dispatch('userList/getList');
+  },
   data() {
     return {
-      userNamesArray: ['fukusan64', 'masu1208', 'unit'],
       inputValue: '',
     };
   },
   computed: {
+    userNamesArray() {
+      return this.$store.getters['userList/filteredUserNameList'](this.inputValue);
+    }
   },
   methods: {
     setUserName(userName) {
@@ -39,14 +45,6 @@ export default {
         // eslint-disable-next-line
         console.log(`selected userName: ${userName}`);
       }
-    },
-  },
-  filters: {
-    userNamesArrayFilter(userNamesArray, inputValue) {
-      const lowerInputVal = inputValue.toLowerCase();
-      return userNamesArray.filter((userName) => {
-        return userName.toLowerCase().indexOf(lowerInputVal) >= 0;
-      });
     },
   },
 }

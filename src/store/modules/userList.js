@@ -1,4 +1,4 @@
-import { user } from "@/api"
+import {user} from "@/api"
 
 const state = {
   list: [],
@@ -14,8 +14,17 @@ const mutations = {
   }
 };
 
+const getters = {
+ filteredUserNameList: ({ list }) => (keyWord) => {
+    const lowerKeyWord = keyWord.toLowerCase();
+    return list.filter((userName) => {
+      return userName.toLowerCase().indexOf(lowerKeyWord) >= 0;
+    });
+  }
+}
+
 const actions = {
-  async updateList({ commit }) {
+  async getList({ commit }) {
     commit('setStatus', 'loading');
     try {
       commit('setList', await user.getList());
@@ -32,5 +41,6 @@ export default {
   namespaced: true,
   state,
   actions,
-  mutations
+  mutations,
+  getters
 }

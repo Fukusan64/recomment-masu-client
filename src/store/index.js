@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import userList from './modules/userList'
-import recommendProblemList from './modules/recommendProblemList'
+import recommendProblemList from './modules/recommendProbemList'
 
 Vue.use(Vuex)
 
