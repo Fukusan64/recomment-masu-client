@@ -1,4 +1,5 @@
 import { recommendProblem } from '@/api'
+import { Snackbar } from 'buefy/dist/components/snackbar'
 
 const state = {
   list: [],
@@ -15,13 +16,23 @@ const mutations = {
 };
 
 const actions = {
-  async updateList({ commit }) {
+  async getList({ commit, state }, userName) {
+    const backupData = state.list;
     commit('setStatus', 'loading');
     try {
-      commit('setList', await recommendProblem.getList());
+      commit('setList', await recommendProblem.getList(userName));
       commit('setStatus', 'loaded');
     } catch (e) {
       commit('setStatus', 'error');
+      commit('setList', backupData);
+      Snackbar.open({
+        duration: 5000,
+        message: '問題一覧の取得中にエラーが発生しました',
+        type: 'is-danger',
+        position: 'is-bottom-left',
+        actionText: '閉じる',
+        queue: false
+      });
       // eslint-disable-next-line no-console
       console.error(e);
     }

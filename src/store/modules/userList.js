@@ -1,4 +1,5 @@
 import { user } from "@/api"
+import { Snackbar } from 'buefy/dist/components/snackbar'
 
 const state = {
   list: [],
@@ -24,13 +25,23 @@ const getters = {
 }
 
 const actions = {
-  async getList({ commit }) {
+  async getList({ commit, state }) {
+    const backupData = state.list;
     commit('setStatus', 'loading');
     try {
       commit('setList', await user.getList());
       commit('setStatus', 'loaded');
     } catch (e) {
       commit('setStatus', 'error');
+      commit('setList', backupData);
+      Snackbar.open({
+        duration: 5000,
+        message: '表示可能なユーザー一覧の取得中にエラーが発生しました',
+        type: 'is-danger',
+        position: 'is-bottom-left',
+        actionText: '閉じる',
+        queue: false
+      });
       // eslint-disable-next-line no-console
       console.error(e);
     }
