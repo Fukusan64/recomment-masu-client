@@ -1,4 +1,4 @@
-import api from "@/api"
+import { user } from "@/api"
 
 const state = {
   list: [],
@@ -18,7 +18,7 @@ const actions = {
   async updateList({ commit }) {
     commit('setStatus', 'loading');
     try {
-      commit('setList', await api.getUserList());
+      commit('setList', await user.getList());
       commit('setStatus', 'loaded');
     } catch (e) {
       commit('setStatus', 'error');
