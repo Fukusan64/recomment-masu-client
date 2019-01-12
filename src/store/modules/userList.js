@@ -1,4 +1,4 @@
-import {user} from "@/api"
+import { user } from "@/api"
 
 const state = {
   list: [],
