@@ -2,7 +2,7 @@
   <div>
     <h2 class="title is-5">recommented problem</h2>
     <b-table
-      :data="data"
+      :data="problems"
       bordered
       striped
       narrowed
@@ -42,40 +42,9 @@
 
 <script>
 export default {
-  data() {
-    return {
-      data: [
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-        { problem: 'xmascon17_i', evaluationValue: '9.41123e-22', link: 'https://atcoder.jp/contests/kupc2017/tasks/kupc2017_l' },
-      ],
+  computed: {
+    problems() {
+      return this.$store.state.recommendProblemList.list;
     }
   }
 }

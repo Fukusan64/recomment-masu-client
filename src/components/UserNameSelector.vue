@@ -48,7 +48,7 @@ export default {
     setUserName(userName) {
       if (userName) {
         // eslint-disable-next-line
-        console.log(`selected userName: ${userName}`);
+        this.$store.dispatch('recommendProblemList/getList', userName);
       }
     },
   },
