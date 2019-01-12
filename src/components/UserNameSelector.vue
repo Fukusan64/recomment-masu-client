@@ -9,6 +9,7 @@
         :data="userNamesArray"
         placeholder="select atCoder user name"
         icon="magnify"
+        :loading="isLoading"
         @select="setUserName">
         <template slot="empty">表示可能なユーザーではありません</template>
       </b-autocomplete>
@@ -37,6 +38,9 @@ export default {
   computed: {
     userNamesArray() {
       return this.$store.getters['userList/filteredUserNameList'](this.inputValue);
+    },
+    isLoading() {
+      return this.$store.state.userList.listStatus === 'loading';
     }
   },
   methods: {
