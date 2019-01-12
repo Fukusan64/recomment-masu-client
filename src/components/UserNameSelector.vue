@@ -4,7 +4,6 @@
       type="is-dark"
     >
       <b-autocomplete
-        :open-on-focus="true"
         v-model="inputValue"
         :data="userNamesArray"
         placeholder="select atCoder user name"
