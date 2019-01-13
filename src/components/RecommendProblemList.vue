@@ -1,7 +1,13 @@
 <template>
   <div>
     <h2 class="title is-5">recommented problem</h2>
-    <b-table
+    <section>
+      <b-field grouped group-multiline>
+        <div class="control">
+          <b-switch v-model="ignoreList.abc">ABC問題を非表示</b-switch>
+        </div>
+      </b-field>
+      <b-table
       :data="problems"
       bordered
       striped
@@ -9,42 +15,50 @@
       mobile-cards
       paginated
       per-page="10"
-    >
-      <template slot-scope="props">
-        <b-table-column field="problem" label="Problem" centered>
-          {{ props.row.problem }}
-        </b-table-column>
-        <b-table-column field="evaluationValue" label="Evaluation value" centered>
-          {{ props.row.evaluationValue }}
-        </b-table-column>
-        <b-table-column field="link" label="Link" centered>
-           <b-tooltip :label="props.row.link" position="is-left">
-            <a class="button is-link is-outlined is-small" :href="props.row.link">Link</a>
-          </b-tooltip>
-        </b-table-column>
-      </template>
-      <template slot="empty">
-        <section class="section">
-          <div class="content has-text-grey has-text-centered">
-            <p>
-              <b-icon
-                  icon="emoticon-sad"
-                  size="is-large">
-              </b-icon>
-            </p>
-            <p>Nothing here.</p>
-          </div>
-        </section>
-      </template>
-    </b-table>
+      >
+        <template slot-scope="props">
+          <b-table-column field="problem" label="Problem" centered>
+            {{ props.row.problem }}
+          </b-table-column>
+          <b-table-column field="evaluationValue" label="Evaluation value" centered>
+            {{ props.row.evaluationValue }}
+          </b-table-column>
+          <b-table-column field="link" label="Link" centered>
+              <b-tooltip :label="props.row.link" position="is-left">
+              <a class="button is-link is-outlined is-small" :href="props.row.link">Link</a>
+            </b-tooltip>
+          </b-table-column>
+        </template>
+        <template slot="empty">
+          <section class="section">
+            <div class="content has-text-grey has-text-centered">
+              <p>
+                <b-icon
+                    icon="emoticon-sad"
+                    size="is-large">
+                </b-icon>
+              </p>
+              <p>Nothing here.</p>
+            </div>
+          </section>
+        </template>
+      </b-table>
+    </section>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      ignoreList: {
+        abc: false,
+      },
+    }
+  },
   computed: {
     problems() {
-      return this.$store.state.recommendProblemList.list;
+      return this.$store.getters['recommendProblemList/filteredProblemList'](this.ignoreList);
     }
   }
 }

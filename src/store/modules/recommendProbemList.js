@@ -26,7 +26,7 @@ const actions = {
       commit('setList', []);
       Snackbar.open({
         duration: 5000,
-        message: '問題一覧の取得中にエラーが発生しました',
+        message: `問題一覧の取得中にエラーが発生しました(status: ${e.response.status})`,
         type: 'is-danger',
         position: 'is-bottom-left',
         actionText: '閉じる',
@@ -38,9 +38,26 @@ const actions = {
   },
 };
 
+const filters = {
+  abc(list) {
+    return list.filter(({problem}) => !/^abc[0-9]{3}_/.test(problem));
+  },
+}
+
+const getters = {
+  filteredProblemList:({ list }) => (ignoreList = {}) => {
+    let tmpList = list;
+    Object.keys(ignoreList).filter(key => ignoreList[key]).forEach(key => {
+      tmpList = filters[key](tmpList);
+    });
+    return tmpList;
+  }
+}
+
 export default {
   namespaced: true,
   state,
   actions,
-  mutations
+  mutations,
+  getters
 }
