@@ -48,7 +48,6 @@ export default {
   methods: {
     setUserName(userName) {
       if (userName) {
-        // eslint-disable-next-line
         this.$store.dispatch('recommendProblemList/getList', userName);
         this.$router.push(`/${userName}`);
       }
