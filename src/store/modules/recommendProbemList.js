@@ -16,15 +16,14 @@ const mutations = {
 };
 
 const actions = {
-  async getList({ commit, state }, userName) {
-    const backupData = state.list;
+  async getList({ commit }, userName) {
     commit('setStatus', 'loading');
     try {
       commit('setList', await recommendProblem.getList(userName));
       commit('setStatus', 'loaded');
     } catch (e) {
       commit('setStatus', 'error');
-      commit('setList', backupData);
+      commit('setList', []);
       Snackbar.open({
         duration: 5000,
         message: '問題一覧の取得中にエラーが発生しました',
