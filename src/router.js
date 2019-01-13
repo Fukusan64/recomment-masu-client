@@ -12,10 +12,5 @@ export default new Router({
       name: 'home',
       component: Home
     },
-    {
-      path: '/:userName',
-      name: 'selectedUserHome',
-      component: Home
-    },
   ]
 })

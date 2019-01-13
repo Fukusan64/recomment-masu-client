@@ -34,7 +34,7 @@ export default {
   },
   data() {
     return {
-      inputValue: this.$route.params.userName || '',
+      inputValue: this.$route.query.userName || '',
     };
   },
   computed: {
@@ -49,7 +49,7 @@ export default {
     setUserName(userName) {
       if (userName) {
         this.$store.dispatch('recommendProblemList/getList', userName);
-        this.$router.push(`/${userName}`);
+        this.$router.push({ path: '/home', query: { ...this.$route.query, userName }})
       }
     },
   },
