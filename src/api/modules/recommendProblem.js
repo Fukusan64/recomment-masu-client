@@ -8,7 +8,7 @@ const getList = async (userName) => {
   const { data } = (await axios.get(`${BASE_URL}/Recommend_for_${userName}.txt`, { crossdomain }));
   return data.split('\n').map(e => {
     const [problem, evaluationValue] = e.split(' ');
-    const contestName = problem.replace(/_[^_]*$/,'').replace('_','-');
+    const contestName = problem.replace(/_[^_]*$/,'').replace(/_/g,'-');
     return {
       problem,
       evaluationValue,
