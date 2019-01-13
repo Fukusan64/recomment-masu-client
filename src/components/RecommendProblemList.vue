@@ -4,7 +4,7 @@
     <section>
       <b-field grouped group-multiline>
         <div class="control">
-          <b-switch v-model="ignoreList.abc">ABC問題を非表示</b-switch>
+          <b-switch @input="val => input('abc', val)" v-model="ignoreList.abc">ABC問題を非表示</b-switch>
         </div>
       </b-field>
       <b-table
@@ -52,7 +52,7 @@ export default {
   data() {
     return {
       ignoreList: {
-        abc: false,
+        abc: this.$route.query.ignoreabc || false,
       },
     }
   },
@@ -60,6 +60,12 @@ export default {
     problems() {
       return this.$store.getters['recommendProblemList/filteredProblemList'](this.ignoreList);
     }
-  }
+  },
+  methods: {
+    input(param,val) {
+      this.ignoreList[param] = val;
+      this.$router.push({ path: '/', query: { ...this.$route.query, [`ignore${param}`]: val }})
+    }
+  },
 }
 </script>

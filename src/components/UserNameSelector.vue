@@ -49,7 +49,7 @@ export default {
     setUserName(userName) {
       if (userName) {
         this.$store.dispatch('recommendProblemList/getList', userName);
-        this.$router.push({ path: '/home', query: { ...this.$route.query, userName }})
+        this.$router.push({ path: '/', query: { ...this.$route.query, userName }})
       }
     },
   },
