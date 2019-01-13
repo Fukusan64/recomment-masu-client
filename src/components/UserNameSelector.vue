@@ -30,10 +30,11 @@
 export default {
   mounted() {
     this.$store.dispatch('userList/getList');
+    this.setUserName(this.inputValue);
   },
   data() {
     return {
-      inputValue: '',
+      inputValue: this.$route.params.userName || '',
     };
   },
   computed: {
@@ -49,6 +50,7 @@ export default {
       if (userName) {
         // eslint-disable-next-line
         this.$store.dispatch('recommendProblemList/getList', userName);
+        this.$router.push(`/${userName}`);
       }
     },
   },
