@@ -14,7 +14,7 @@
       narrowed
       mobile-cards
       paginated
-      per-page="10"
+      per-page="20"
       :current-page="currentPage"
       @page-change="ChangePageQuery"
       :pagination-simple="true"
