@@ -15,6 +15,9 @@
       mobile-cards
       paginated
       per-page="10"
+      :current-page="currentPage"
+      @page-change="ChangePageQuery"
+      :pagination-simple="true"
       >
         <template slot-scope="props">
           <b-table-column field="problem" label="Problem" centered>
@@ -54,6 +57,7 @@ export default {
       ignoreList: {
         abc: this.$route.query.ignoreabc || false,
       },
+      currentPage: this.$route.query.page || 1,
     }
   },
   computed: {
@@ -64,7 +68,10 @@ export default {
   methods: {
     input(param,val) {
       this.ignoreList[param] = val;
-      this.$router.push({ path: '/', query: { ...this.$route.query, [`ignore${param}`]: val }})
+      this.$router.push({ path: '/', query: { ...this.$route.query, [`ignore${param}`]: val }});
+    },
+    ChangePageQuery(page) {
+      this.$router.push({ path: '/', query: { ...this.$route.query, page }});
     }
   },
 }
