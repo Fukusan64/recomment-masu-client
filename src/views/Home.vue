@@ -1,6 +1,6 @@
 <template>
   <div class="container" id="home">
-    <h1 class="title">AtCoer Problem Recommenter</h1>
+    <h1 class="title">AtCoder Problem Recommenter</h1>
     <UserNameSelector/>
     <RecommendProblemList/>
   </div>
