@@ -18,6 +18,7 @@
       :current-page="currentPage"
       @page-change="ChangePageQuery"
       :pagination-simple="true"
+      :loading="isLoading"
       >
         <template slot-scope="props">
           <b-table-column field="problem" label="Problem" centered>
@@ -63,6 +64,9 @@ export default {
   computed: {
     problems() {
       return this.$store.getters['recommendProblemList/filteredProblemList'](this.ignoreList);
+    },
+    isLoading() {
+      return this.$store.state.recommendProblemList.listStatus === 'loading';
     }
   },
   methods: {
