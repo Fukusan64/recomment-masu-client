@@ -8,7 +8,7 @@ const state = {
 
 const mutations = {
   setList(state, list) {
-    state.list = list;
+    state.list = list.sort((a, b) => a.length - b.length);
   },
   setStatus(state, status) {
     state.listStatus = status;
