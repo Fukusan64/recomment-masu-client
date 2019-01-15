@@ -39,6 +39,9 @@ const actions = {
 };
 
 const filters = {
+  solved(list) {
+    return list.filter(({evaluationValue}) => evaluationValue > 0);
+  },
   abc(list) {
     return list.filter(({problem}) => !/^abc[0-9]{3}_/.test(problem));
   },
@@ -47,6 +50,7 @@ const filters = {
 const getters = {
   filteredProblemList:({ list }) => (ignoreList = {}) => {
     let tmpList = list;
+    ignoreList = {...ignoreList, solved: true};
     Object.keys(ignoreList).filter(key => ignoreList[key]).forEach(key => {
       tmpList = filters[key](tmpList);
     });

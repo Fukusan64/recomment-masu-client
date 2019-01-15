@@ -17,7 +17,7 @@
       per-page="20"
       :current-page="currentPage"
       @page-change="ChangePageQuery"
-      :pagination-simple="true"
+      :pagination-simple="false"
       :loading="isLoading"
       >
         <template slot-scope="props">
@@ -58,7 +58,7 @@ export default {
       ignoreList: {
         abc: this.$route.query.ignoreabc || false,
       },
-      currentPage: this.$route.query.page || 1,
+      currentPage: this.$route.query.page ? Number(this.$route.query.page) : 1,
     }
   },
   computed: {
@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     input(param,val) {
-      this.ignoreList[param] = val;
+      this.ignoreList[param] = Boolean(val);
       this.$router.push({ path: '/', query: { ...this.$route.query, [`ignore${param}`]: val }});
     },
     ChangePageQuery(page) {
