@@ -40,7 +40,7 @@ const actions = {
 
 const filters = {
   solved(list) {
-    return list.filter(({evaluationValue}) => evaluationValue > 0);
+    return list.filter(({evaluationValue}) => evaluationValue > -9000);
   },
   abc(list) {
     return list.filter(({problem}) => !/^abc[0-9]{3}_/.test(problem));
